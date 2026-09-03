@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../images/favicon.ico">
-      <meta name="generator" content="zensical-0.0.57">
+      <meta name="generator" content="zensical-0.0.58">
     
     
       
@@ -2039,6 +2039,12 @@ DuckDB sources can be combined with other sources via <a href="../sources-compos
 <p>SRID auto-detection supports EPSG codes and <code>OGC:CRS84</code> only.
 If the file has more than one geometry column, set <code>geometry_column</code> explicitly.</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Vector tiles can only carry text, numeric and boolean properties</p>
+<p>Martin casts every other scalar column - dates, timestamps, <code>DECIMAL</code>, <code>UUID</code>, <code>ENUM</code>, and small or unsigned integers - to the nearest type MVT supports.
+Columns with no MVT representation at all, such as <code>STRUCT</code>, <code>LIST</code>, <code>MAP</code> and <code>BLOB</code>, are dropped and named in a startup warning.
+The TileJSON <code>vector_layers[].fields</code> reports the type each property is served as, not the type it has on disk.</p>
+</div>
 <h2 id="database-sources">Database sources</h2>
 <p>A <code>database:</code> entry names a DuckDB database file.
 The configuration parser accepts the <code>auto_publish</code>, <code>tables</code>, and <code>macros</code> blocks shown below, but does not interpret them yet.
@@ -2243,7 +2249,7 @@ Remote <code>http://</code> / <code>https://</code> URLs also load the DuckDB <c
       <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["announce.dismiss","content.action.edit","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","header.autohide","navigation.expand","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.prune","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","search.highlight","toc.follow","toc.integrate"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../assets/javascripts/bundle.49251538.min.js"></script>
+      <script src="../assets/javascripts/bundle.6970bfe9.min.js"></script>
       
     
   </body>
